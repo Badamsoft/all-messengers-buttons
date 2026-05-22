@@ -32,6 +32,7 @@ class AllMessengersButtons {
     }
     
     private function __construct() {
+        add_action('plugins_loaded', array($this, 'load_textdomain'));
         add_action('admin_menu', array($this, 'add_admin_menu'));
         add_action('admin_init', array($this, 'register_settings'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_assets'));
@@ -40,6 +41,10 @@ class AllMessengersButtons {
         add_action('wp_footer', array($this, 'render_widget'));
         add_shortcode('all_messengers', array($this, 'shortcode_handler'));
         add_action('wp_ajax_amb_save_settings', array($this, 'ajax_save_settings'));
+    }
+
+    public function load_textdomain() {
+        load_plugin_textdomain('all-messengers-buttons', false, dirname(plugin_basename(__FILE__)) . '/languages');
     }
 
     
