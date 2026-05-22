@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Node / build tools
+node_modules/
+npm-debug.log*
+yarn-error.log
+.yarn/
+dist/
+build/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Plugin Check reports
+*.md.bak
+all-messengers-buttons-*.md
+
+# Environment
+.env
+.env.local
+
+# WordPress
+wp-config.php
