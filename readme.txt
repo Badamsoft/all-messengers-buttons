@@ -2,7 +2,7 @@
 Contributors: badamsoft
 Tags: messenger, whatsapp, telegram, viber, widget
 Requires at least: 5.0
-Tested up to: 6.8
+Tested up to: 7.0
 Requires PHP: 7.4
 Stable tag: 1.3.4
 License: GPLv2 or later
@@ -121,6 +121,10 @@ Enable analytics tracking in the "Advanced" tab and configure your Google Analyt
 
 = 1.0.0 =
 * Initial release
+
+== Other Notes ==
+
+Source code available on GitHub: https://github.com/Badamsoft/all-messengers-buttons
 
 == Upgrade Notice ==
 
