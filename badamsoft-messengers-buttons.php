@@ -129,7 +129,24 @@ class BadamsoftMessengerButtons {
             $bmb_inline_js .= 'window.wpBmbPluginUrl = ' . wp_json_encode( BMB_PLUGIN_URL ) . ';' . "\n";
             $bmb_inline_js .= 'window.wpAmbPluginUrl = ' . wp_json_encode( BMB_PLUGIN_URL ) . ';' . "\n";
             $bmb_inline_js .= 'window.wpBmbPluginVersion = ' . wp_json_encode( defined( 'BMB_VERSION' ) ? BMB_VERSION : '' ) . ';' . "\n";
-            $bmb_inline_js .= 'window.wpAmbPluginVersion = ' . wp_json_encode( defined( 'BMB_VERSION' ) ? BMB_VERSION : '' ) . ';';
+            $bmb_inline_js .= 'window.wpAmbPluginVersion = ' . wp_json_encode( defined( 'BMB_VERSION' ) ? BMB_VERSION : '' ) . ';' . "\n";
+            $bmb_inline_js .= 'window.bmbIconUrl = ' . wp_json_encode( BMB_PLUGIN_URL . 'assets/images/' ) . ';' . "\n";
+            $bmb_correct_icons = array(
+                'whatsapp' => 'whatsapp.svg',
+                'telegram' => 'telegram.svg',
+                'viber'    => 'viber.svg',
+                'messenger'=> 'messenger.svg',
+                'signal'   => 'signal.svg',
+                'wechat'   => 'wechat.svg',
+                'line'     => 'line.svg',
+                'discord'  => 'discord.svg',
+                'vk'       => 'vk.svg',
+                'max'      => 'max.png',
+                'comera'   => 'comera.png',
+                'botim'    => 'botim.png',
+                'imo'      => 'imo.svg',
+            );
+            $bmb_inline_js .= 'window.bmbCorrectIcons = ' . wp_json_encode( $bmb_correct_icons ) . ';';
 
             wp_add_inline_script('bmb-react-js', $bmb_inline_js, 'before');
         }
