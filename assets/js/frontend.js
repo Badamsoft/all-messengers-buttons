@@ -1,14 +1,14 @@
 jQuery(document).ready(function($) {
     'use strict';
 
-    const $widget = $('.all-messengers-widget');
+    const $widget = $('.bmb-messengers-widget');
     
     if (!$widget.length) {
         return;
     }
 
-    const $toggleBtn = $widget.find('.amb-toggle-btn');
-    const $messengerBtns = $widget.find('.amb-messenger-btn');
+    const $toggleBtn = $widget.find('.bmb-toggle-btn');
+    const $messengerBtns = $widget.find('.bmb-messenger-btn');
 
     // Working hours enforcement (client-side, browser local time)
     const workingHoursEnabled = $widget.data('working-hours-enabled') === true || $widget.data('working-hours-enabled') === 'true';
@@ -69,26 +69,26 @@ jQuery(document).ready(function($) {
         const messengerType = $(this).data('messenger');
         
         // Track with Google Analytics if available
-        if (typeof ambSettings !== 'undefined' && ambSettings.enableAnalytics) {
+        if (typeof bmbSettings !== 'undefined' && bmbSettings.enableAnalytics) {
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'click', {
-                    'event_category': ambSettings.eventCategory || 'Messengers',
+                    'event_category': bmbSettings.eventCategory || 'Messengers',
                     'event_label': messengerType
                 });
             } else if (typeof ga !== 'undefined') {
-                ga('send', 'event', ambSettings.eventCategory || 'Messengers', 'click', messengerType);
+                ga('send', 'event', bmbSettings.eventCategory || 'Messengers', 'click', messengerType);
             } else if (typeof _paq !== 'undefined') {
                 // Matomo tracking
-                _paq.push(['trackEvent', ambSettings.eventCategory || 'Messengers', 'click', messengerType]);
+                _paq.push(['trackEvent', bmbSettings.eventCategory || 'Messengers', 'click', messengerType]);
             }
         }
     });
 
     // Add hover effects
     $messengerBtns.on('mouseenter', function() {
-        $(this).find('.amb-btn-icon').css('transform', 'scale(1.1)');
+        $(this).find('.bmb-btn-icon').css('transform', 'scale(1.1)');
     }).on('mouseleave', function() {
-        $(this).find('.amb-btn-icon').css('transform', 'scale(1)');
+        $(this).find('.bmb-btn-icon').css('transform', 'scale(1)');
     });
 
     // Keyboard accessibility

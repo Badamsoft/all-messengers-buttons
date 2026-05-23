@@ -1,6 +1,6 @@
 /* All Messengers Buttons - Frontend Widget Styles */
 
-.all-messengers-widget {
+.bmb-messengers-widget {
     position: fixed;
     z-index: 999999;
     display: flex;
@@ -9,35 +9,35 @@
     gap: 12px;
 }
 
-.all-messengers-widget.amb-position-right-bottom {
-    bottom: var(--amb-offset, 20px);
-    right: var(--amb-offset, 20px);
+.bmb-messengers-widget.bmb-position-right-bottom {
+    bottom: var(--bmb-offset, 20px);
+    right: var(--bmb-offset, 20px);
 }
 
-.all-messengers-widget.amb-position-left-bottom {
-    bottom: var(--amb-offset, 20px);
-    left: var(--amb-offset, 20px);
+.bmb-messengers-widget.bmb-position-left-bottom {
+    bottom: var(--bmb-offset, 20px);
+    left: var(--bmb-offset, 20px);
 }
 
-.all-messengers-widget.amb-position-right-top {
-    top: var(--amb-offset, 20px);
-    right: var(--amb-offset, 20px);
+.bmb-messengers-widget.bmb-position-right-top {
+    top: var(--bmb-offset, 20px);
+    right: var(--bmb-offset, 20px);
     flex-direction: column-reverse;
 }
 
-.all-messengers-widget.amb-position-left-top {
-    top: var(--amb-offset, 20px);
-    left: var(--amb-offset, 20px);
+.bmb-messengers-widget.bmb-position-left-top {
+    top: var(--bmb-offset, 20px);
+    left: var(--bmb-offset, 20px);
     flex-direction: column-reverse;
 }
 
-.all-messengers-widget.amb-position-center-bottom {
-    bottom: var(--amb-offset, 20px);
+.bmb-messengers-widget.bmb-position-center-bottom {
+    bottom: var(--bmb-offset, 20px);
     left: 50%;
     transform: translateX(-50%);
 }
 
-.amb-widget-buttons {
+.bmb-widget-buttons {
     display: flex;
     flex-direction: column-reverse;
     gap: 10px;
@@ -47,18 +47,18 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.all-messengers-widget.amb-position-right-top .amb-widget-buttons,
-.all-messengers-widget.amb-position-left-top .amb-widget-buttons {
+.bmb-messengers-widget.bmb-position-right-top .bmb-widget-buttons,
+.bmb-messengers-widget.bmb-position-left-top .bmb-widget-buttons {
     flex-direction: column;
 }
 
-.all-messengers-widget.open .amb-widget-buttons {
+.bmb-messengers-widget.open .bmb-widget-buttons {
     opacity: 1;
     visibility: visible;
     transform: scale(1);
 }
 
-.amb-messenger-btn {
+.bmb-messenger-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -68,24 +68,24 @@
     animation: slideUp 0.3s ease-out backwards;
 }
 
-.amb-messenger-btn:hover {
+.bmb-messenger-btn:hover {
     transform: scale(1.1);
 }
 
-.amb-messenger-btn:nth-child(1) { animation-delay: 0.05s; }
-.amb-messenger-btn:nth-child(2) { animation-delay: 0.1s; }
-.amb-messenger-btn:nth-child(3) { animation-delay: 0.15s; }
-.amb-messenger-btn:nth-child(4) { animation-delay: 0.2s; }
-.amb-messenger-btn:nth-child(5) { animation-delay: 0.25s; }
-.amb-messenger-btn:nth-child(6) { animation-delay: 0.3s; }
-.amb-messenger-btn:nth-child(7) { animation-delay: 0.35s; }
-.amb-messenger-btn:nth-child(8) { animation-delay: 0.4s; }
-.amb-messenger-btn:nth-child(9) { animation-delay: 0.45s; }
-.amb-messenger-btn:nth-child(10) { animation-delay: 0.5s; }
+.bmb-messenger-btn:nth-child(1) { animation-delay: 0.05s; }
+.bmb-messenger-btn:nth-child(2) { animation-delay: 0.1s; }
+.bmb-messenger-btn:nth-child(3) { animation-delay: 0.15s; }
+.bmb-messenger-btn:nth-child(4) { animation-delay: 0.2s; }
+.bmb-messenger-btn:nth-child(5) { animation-delay: 0.25s; }
+.bmb-messenger-btn:nth-child(6) { animation-delay: 0.3s; }
+.bmb-messenger-btn:nth-child(7) { animation-delay: 0.35s; }
+.bmb-messenger-btn:nth-child(8) { animation-delay: 0.4s; }
+.bmb-messenger-btn:nth-child(9) { animation-delay: 0.45s; }
+.bmb-messenger-btn:nth-child(10) { animation-delay: 0.5s; }
 
-.amb-btn-icon {
-    width: var(--amb-icon-size, 56px);
-    height: var(--amb-icon-size, 56px);
+.bmb-btn-icon {
+    width: var(--bmb-icon-size, 56px);
+    height: var(--bmb-icon-size, 56px);
     border-radius: 0;
     background-color: transparent;
     display: flex;
@@ -95,36 +95,36 @@
     transition: all 0.3s ease;
 }
 
-.amb-messenger-btn:hover .amb-btn-icon {
+.bmb-messenger-btn:hover .bmb-btn-icon {
     background-color: transparent;
     box-shadow: none;
 }
 
-.amb-btn-icon .amb-icon {
+.bmb-btn-icon .bmb-icon {
     width: 100%;
     height: 100%;
     color: #111827;
 }
 
-.amb-icon-whatsapp { color: #25D366; }
-.amb-icon-telegram { color: #229ED9; }
-.amb-icon-viber { color: #7360F2; }
-.amb-icon-messenger { color: #0084FF; }
-.amb-icon-signal { color: #3A76F0; }
-.amb-icon-wechat { color: #09B83E; }
-.amb-icon-line { color: #00B900; }
-.amb-icon-discord { color: #5865F2; }
-.amb-icon-vk { color: #0077FF; }
-.amb-icon-max { color: #6b7280; }
+.bmb-icon-whatsapp { color: #25D366; }
+.bmb-icon-telegram { color: #229ED9; }
+.bmb-icon-viber { color: #7360F2; }
+.bmb-icon-messenger { color: #0084FF; }
+.bmb-icon-signal { color: #3A76F0; }
+.bmb-icon-wechat { color: #09B83E; }
+.bmb-icon-line { color: #00B900; }
+.bmb-icon-discord { color: #5865F2; }
+.bmb-icon-vk { color: #0077FF; }
+.bmb-icon-max { color: #6b7280; }
 
-.amb-custom-icon {
+.bmb-custom-icon {
     width: 100%;
     height: 100%;
     object-fit: contain;
     border-radius: 0;
 }
 
-.amb-btn-text {
+.bmb-btn-text {
     font-size: 11px;
     font-weight: 500;
     color: #374151;
@@ -132,11 +132,11 @@
     text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
-.amb-toggle-btn {
-    width: var(--amb-icon-size, 56px);
-    height: var(--amb-icon-size, 56px);
+.bmb-toggle-btn {
+    width: var(--bmb-icon-size, 56px);
+    height: var(--bmb-icon-size, 56px);
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--amb-primary-color, #6366f1) 0%, var(--amb-hover-color, #4f46e5) 100%);
+    background: linear-gradient(135deg, var(--bmb-primary-color, #6366f1) 0%, var(--bmb-hover-color, #4f46e5) 100%);
     border: none;
     cursor: pointer;
     display: flex;
@@ -147,9 +147,9 @@
     position: relative;
 }
 
- .all-messengers-widget .amb-toggle-btn {
-     width: var(--amb-icon-size, 56px) !important;
-     height: var(--amb-icon-size, 56px) !important;
+ .bmb-messengers-widget .bmb-toggle-btn {
+     width: var(--bmb-icon-size, 56px) !important;
+     height: var(--bmb-icon-size, 56px) !important;
      padding: 0 !important;
      border-radius: 50% !important;
      min-width: 0 !important;
@@ -161,17 +161,17 @@
      appearance: none;
  }
 
-.amb-toggle-btn:hover {
+.bmb-toggle-btn:hover {
     transform: scale(1.1);
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
 }
 
-.amb-toggle-btn:active {
+.bmb-toggle-btn:active {
     transform: scale(0.95);
 }
 
-.amb-icon-open,
-.amb-icon-close {
+.bmb-icon-open,
+.bmb-icon-close {
     width: 50%;
     height: 50%;
     color: white;
@@ -179,28 +179,28 @@
     transition: all 0.3s ease;
 }
 
-.amb-icon-open {
+.bmb-icon-open {
     opacity: 1;
     transform: rotate(0deg) scale(1);
 }
 
-.amb-icon-close {
+.bmb-icon-close {
     opacity: 0;
     transform: rotate(90deg) scale(0);
 }
 
-.all-messengers-widget.open .amb-icon-open {
+.bmb-messengers-widget.open .bmb-icon-open {
     opacity: 0;
     transform: rotate(-90deg) scale(0);
 }
 
-.all-messengers-widget.open .amb-icon-close {
+.bmb-messengers-widget.open .bmb-icon-close {
     opacity: 1;
     transform: rotate(0deg) scale(1);
 }
 
-.all-messengers-widget.open .amb-toggle-btn {
-    background: linear-gradient(135deg, var(--amb-hover-color, #4f46e5) 0%, var(--amb-primary-color, #6366f1) 100%);
+.bmb-messengers-widget.open .bmb-toggle-btn {
+    background: linear-gradient(135deg, var(--bmb-hover-color, #4f46e5) 0%, var(--bmb-primary-color, #6366f1) 100%);
 }
 
 @keyframes slideUp {
@@ -232,47 +232,47 @@
     }
 }
 
-.all-messengers-widget[data-animation="false"] .amb-messenger-btn {
+.bmb-messengers-widget[data-animation="false"] .bmb-messenger-btn {
     animation: none;
 }
 
-.all-messengers-widget[data-animation="false"] .amb-widget-buttons {
+.bmb-messengers-widget[data-animation="false"] .bmb-widget-buttons {
     transition: opacity 0.2s ease, visibility 0.2s ease;
     transform: none;
 }
 
 @media (max-width: 768px) {
-    .all-messengers-widget {
-        --amb-icon-size: 48px;
+    .bmb-messengers-widget {
+        --bmb-icon-size: 48px;
     }
     
-    .amb-widget-buttons {
+    .bmb-widget-buttons {
         gap: 8px;
     }
     
-    .amb-btn-text {
+    .bmb-btn-text {
         font-size: 10px;
     }
 }
 
 @media (max-width: 480px) {
-    .all-messengers-widget {
-        --amb-icon-size: 44px;
+    .bmb-messengers-widget {
+        --bmb-icon-size: 44px;
     }
     
-    .all-messengers-widget.amb-position-right-bottom,
-    .all-messengers-widget.amb-position-left-bottom,
-    .all-messengers-widget.amb-position-right-top,
-    .all-messengers-widget.amb-position-left-top {
-        --amb-offset: 16px;
+    .bmb-messengers-widget.bmb-position-right-bottom,
+    .bmb-messengers-widget.bmb-position-left-bottom,
+    .bmb-messengers-widget.bmb-position-right-top,
+    .bmb-messengers-widget.bmb-position-left-top {
+        --bmb-offset: 16px;
     }
 }
 
-.all-messengers-widget.amb-position-right-top .amb-widget-buttons,
-.all-messengers-widget.amb-position-left-top .amb-widget-buttons {
+.bmb-messengers-widget.bmb-position-right-top .bmb-widget-buttons,
+.bmb-messengers-widget.bmb-position-left-top .bmb-widget-buttons {
     flex-direction: column-reverse;
 }
 
-.all-messengers-widget svg {
+.bmb-messengers-widget svg {
     display: block;
 }

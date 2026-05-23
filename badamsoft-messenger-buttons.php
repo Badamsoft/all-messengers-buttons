@@ -1,14 +1,14 @@
 <?php
 /**
- * Plugin Name: All Messengers Buttons
- * Plugin URI: https://wordpress.org/plugins/all-messengers-buttons/
+ * Plugin Name: Badamsoft Messenger Buttons
+ * Plugin URI: https://wordpress.org/plugins/badamsoft-messenger-buttons/
  * Description: Add WhatsApp, Telegram, MAX, Viber, Signal and other messenger buttons in one stylish floating widget.
  * Version: 1.3.4
  * Author: badamsoft
  * Author URI: https://badamsoft.com
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: all-messengers-buttons
+ * Text Domain: badamsoft-messenger-buttons
  * Domain Path: /languages
  */
 
@@ -16,11 +16,11 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('AMB_VERSION', '1.3.4');
-define('AMB_PLUGIN_DIR', plugin_dir_path(__FILE__));
-define('AMB_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('BMB_VERSION', '1.3.4');
+define('BMB_PLUGIN_DIR', plugin_dir_path(__FILE__));
+define('BMB_PLUGIN_URL', plugin_dir_url(__FILE__));
 
-class AllMessengersButtons {
+class BadamsoftMessengerButtons {
     
     private static $instance = null;
     
@@ -39,7 +39,7 @@ class AllMessengersButtons {
         add_action('wp_enqueue_scripts', array($this, 'enqueue_frontend_assets'));
         add_action('wp_footer', array($this, 'render_widget'));
         add_shortcode('all_messengers', array($this, 'shortcode_handler'));
-        add_action('wp_ajax_amb_save_settings', array($this, 'ajax_save_settings'));
+        add_action('wp_ajax_bmb_save_settings', array($this, 'ajax_save_settings'));
     }
 
     
@@ -48,7 +48,7 @@ class AllMessengersButtons {
             'All Messengers Buttons',
             'Messengers',
             'manage_options',
-            'all-messengers-buttons',
+            'badamsoft-messenger-buttons',
             array($this, 'render_admin_page'),
             'dashicons-format-chat',
             30
@@ -56,7 +56,7 @@ class AllMessengersButtons {
     }
     
     public function register_settings() {
-        register_setting('amb_settings', 'amb_options', array('sanitize_callback' => array($this, 'sanitize_options')));
+        register_setting('bmb_settings', 'bmb_options', array('sanitize_callback' => array($this, 'sanitize_options')));
         
         $default_options = array(
             'position' => 'right-bottom',
@@ -85,37 +85,45 @@ class AllMessengersButtons {
             )
         );
         
-        if (false === get_option('amb_options')) {
-            add_option('amb_options', $default_options);
+        if (false === get_option('bmb_options')) {
+            add_option('bmb_options', $default_options);
         }
     }
     
     public function enqueue_admin_assets($hook) {
-        if ('toplevel_page_all-messengers-buttons' !== $hook) {
+        if ('toplevel_page_badamsoft-messenger-buttons' !== $hook) {
             return;
         }
 
-        $assets_dir = AMB_PLUGIN_DIR . 'admin-react/assets/';
+        $assets_dir = BMB_PLUGIN_DIR . 'admin-react/assets/';
         $css_files   = glob($assets_dir . 'index-*.css');
         $js_files    = glob($assets_dir . 'index-*.js');
 
         if (!empty($css_files)) {
-            wp_enqueue_style('amb-react-css', AMB_PLUGIN_URL . 'admin-react/assets/' . basename($css_files[0]), array(), AMB_VERSION);
+            wp_enqueue_style('bmb-react-css', BMB_PLUGIN_URL . 'admin-react/assets/' . basename($css_files[0]), array(), BMB_VERSION);
         }
         if (!empty($js_files)) {
-            wp_enqueue_script('amb-react-js', AMB_PLUGIN_URL . 'admin-react/assets/' . basename($js_files[0]), array(), AMB_VERSION, true);
+            wp_enqueue_script('bmb-react-js', BMB_PLUGIN_URL . 'admin-react/assets/' . basename($js_files[0]), array(), BMB_VERSION, true);
+
+            $bmb_inline_js = 'window.wpBmbSettings = ' . wp_json_encode( get_option( 'bmb_options', array() ) ) . ';' . "\n";
+            $bmb_inline_js .= 'window.wpBmbAjaxUrl = ' . wp_json_encode( admin_url( 'admin-ajax.php' ) ) . ';' . "\n";
+            $bmb_inline_js .= 'window.wpBmbNonce = ' . wp_json_encode( wp_create_nonce( 'bmb_save_settings' ) ) . ';' . "\n";
+            $bmb_inline_js .= 'window.wpBmbPluginUrl = ' . wp_json_encode( BMB_PLUGIN_URL ) . ';' . "\n";
+            $bmb_inline_js .= 'window.wpBmbPluginVersion = ' . wp_json_encode( defined( 'BMB_VERSION' ) ? BMB_VERSION : '' ) . ';';
+
+            wp_add_inline_script('bmb-react-js', $bmb_inline_js, 'before');
         }
     }
 
     public function add_module_type_to_react_script($tag, $handle) {
-        if ('amb-react-js' === $handle) {
+        if ('bmb-react-js' === $handle) {
             $tag = str_replace('<script ', '<script type="module" ', $tag);
         }
         return $tag;
     }
     
     public function enqueue_frontend_assets() {
-        $options = get_option('amb_options');
+        $options = get_option('bmb_options');
         
         if (empty($options)) {
             return;
@@ -131,17 +139,35 @@ class AllMessengersButtons {
             return;
         }
         
-        wp_enqueue_style('amb-frontend-css', AMB_PLUGIN_URL . 'assets/css/frontend.css', array(), AMB_VERSION);
-        wp_enqueue_script('amb-frontend-js', AMB_PLUGIN_URL . 'assets/js/frontend.js', array('jquery'), AMB_VERSION, true);
-        
-        wp_localize_script('amb-frontend-js', 'ambSettings', array(
+        wp_enqueue_style('bmb-frontend-css', BMB_PLUGIN_URL . 'assets/css/frontend.css', array(), BMB_VERSION);
+        wp_enqueue_script('bmb-frontend-js', BMB_PLUGIN_URL . 'assets/js/frontend.js', array('jquery'), BMB_VERSION, true);
+
+        wp_localize_script('bmb-frontend-js', 'bmbSettings', array(
             'enableAnalytics' => isset($options['enable_analytics']) ? $options['enable_analytics'] : false,
             'eventCategory' => isset($options['event_category']) ? $options['event_category'] : 'Messengers'
         ));
+
+        $bmb_offset = isset($options['offset']) ? absint($options['offset']) : 20;
+        $bmb_primary_color = isset($options['primary_color']) ? sanitize_hex_color($options['primary_color']) : '#6366f1';
+        $bmb_hover_color = isset($options['hover_color']) ? sanitize_hex_color($options['hover_color']) : '#4f46e5';
+        $bmb_icon_size = isset($options['icon_size']) ? absint($options['icon_size']) : 56;
+
+        $bmb_inline_css = ':root { ';
+        $bmb_inline_css .= '--bmb-offset: ' . $bmb_offset . 'px; ';
+        $bmb_inline_css .= '--bmb-primary-color: ' . $bmb_primary_color . '; ';
+        $bmb_inline_css .= '--bmb-hover-color: ' . $bmb_hover_color . '; ';
+        $bmb_inline_css .= '--bmb-icon-size: ' . $bmb_icon_size . 'px; ';
+        $bmb_inline_css .= '}';
+
+        if (!empty($options['custom_css'])) {
+            $bmb_inline_css .= "\n" . wp_kses_post($options['custom_css']);
+        }
+
+        wp_add_inline_style('bmb-frontend-css', $bmb_inline_css);
     }
     
     public function render_widget() {
-        $options = get_option('amb_options');
+        $options = get_option('bmb_options');
         
         if (empty($options)) {
             return;
@@ -157,26 +183,26 @@ class AllMessengersButtons {
             return;
         }
         
-        include AMB_PLUGIN_DIR . 'templates/widget.php';
+        include BMB_PLUGIN_DIR . 'templates/widget.php';
     }
     
     public function shortcode_handler($atts) {
-        $options = get_option('amb_options');
+        $options = get_option('bmb_options');
         
         if (empty($options)) {
             return '';
         }
         
         ob_start();
-        include AMB_PLUGIN_DIR . 'templates/widget.php';
+        include BMB_PLUGIN_DIR . 'templates/widget.php';
         return ob_get_clean();
     }
     
     public function ajax_save_settings() {
-        check_ajax_referer('amb_save_settings', 'nonce');
+        check_ajax_referer('bmb_save_settings', 'nonce');
         
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(__('Insufficient permissions', 'all-messengers-buttons'));
+            wp_send_json_error(__('Insufficient permissions', 'badamsoft-messenger-buttons'));
         }
         
         // Sanitization happens in sanitize_options() called below
@@ -192,9 +218,9 @@ class AllMessengersButtons {
 
         $options = $this->sanitize_options($options);
         
-        update_option('amb_options', $options);
+        update_option('bmb_options', $options);
         
-        wp_send_json_success(__('Settings saved successfully', 'all-messengers-buttons'));
+        wp_send_json_success(__('Settings saved successfully', 'badamsoft-messenger-buttons'));
     }
 
     private function sanitize_options($options) {
@@ -316,13 +342,13 @@ class AllMessengersButtons {
     }
     
     public function render_admin_page() {
-        include AMB_PLUGIN_DIR . 'templates/admin-page-react.php';
+        include BMB_PLUGIN_DIR . 'templates/admin-page-react.php';
     }
 }
 
-// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Function is properly prefixed with amb_
-function amb_init() {
-    return AllMessengersButtons::get_instance();
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Function is properly prefixed with bmb_
+function bmb_init() {
+    return BadamsoftMessengerButtons::get_instance();
 }
 
-add_action('plugins_loaded', 'amb_init');
+add_action('plugins_loaded', 'bmb_init');

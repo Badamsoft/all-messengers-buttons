@@ -2,12 +2,12 @@ jQuery(document).ready(function($) {
     'use strict';
 
     (function() {
-        const $wrap = $('.amb-admin-wrap');
+        const $wrap = $('.bmb-admin-wrap');
         if (!$wrap.length) {
             return;
         }
 
-        const $noticesHost = $wrap.find('> .amb-wp-notices').first();
+        const $noticesHost = $wrap.find('> .bmb-wp-notices').first();
         if (!$noticesHost.length) {
             return;
         }
@@ -33,17 +33,17 @@ jQuery(document).ready(function($) {
 
     // Initialize color pickers
     if ($.fn && typeof $.fn.wpColorPicker === 'function') {
-        $('.amb-color-picker').wpColorPicker();
+        $('.bmb-color-picker').wpColorPicker();
     }
 
     // Tab switching
-    $('.amb-tab').on('click', function() {
+    $('.bmb-tab').on('click', function() {
         const tabId = $(this).data('tab');
         
-        $('.amb-tab').removeClass('active');
+        $('.bmb-tab').removeClass('active');
         $(this).addClass('active');
         
-        $('.amb-tab-content').removeClass('active');
+        $('.bmb-tab-content').removeClass('active');
         $('#tab-' + tabId).addClass('active');
     });
 
@@ -53,30 +53,30 @@ jQuery(document).ready(function($) {
     });
 
     // Messenger toggle details
-    $('.amb-toggle-details').on('click', function(e) {
+    $('.bmb-toggle-details').on('click', function(e) {
         e.stopPropagation();
-        const $item = $(this).closest('.amb-messenger-item');
-        const $details = $item.find('.amb-messenger-details');
+        const $item = $(this).closest('.bmb-messenger-item');
+        const $details = $item.find('.bmb-messenger-details');
         
         $item.toggleClass('open');
         $details.slideToggle(300);
     });
 
     // Messenger enable/disable
-    $('.amb-messenger-toggle').on('change', function() {
-        const $item = $(this).closest('.amb-messenger-item');
+    $('.bmb-messenger-toggle').on('change', function() {
+        const $item = $(this).closest('.bmb-messenger-item');
         const isEnabled = $(this).is(':checked');
         
-        $item.find('input, button').not('.amb-messenger-toggle, .amb-toggle-details').prop('disabled', !isEnabled);
+        $item.find('input, button').not('.bmb-messenger-toggle, .bmb-toggle-details').prop('disabled', !isEnabled);
     });
 
     // Custom icon upload
-    $('.amb-upload-icon').on('click', function(e) {
+    $('.bmb-upload-icon').on('click', function(e) {
         e.preventDefault();
         
         const $button = $(this);
         const messengerType = $button.data('type');
-        const $input = $button.siblings('.amb-custom-icon-input');
+        const $input = $button.siblings('.bmb-custom-icon-input');
         
         const mediaUploader = wp.media({
             title: 'Choose an icon',
@@ -94,16 +94,16 @@ jQuery(document).ready(function($) {
             $input.val(attachment.url);
             
             // Update preview
-            const $item = $button.closest('.amb-messenger-item');
-            const $preview = $item.find('.amb-custom-icon-preview');
+            const $item = $button.closest('.bmb-messenger-item');
+            const $preview = $item.find('.bmb-custom-icon-preview');
             
             if ($preview.length) {
                 $preview.find('img').attr('src', attachment.url);
             } else {
                 const previewHtml = `
-                    <div class="amb-custom-icon-preview">
+                    <div class="bmb-custom-icon-preview">
                         <img src="${attachment.url}" alt="Custom icon">
-                        <button type="button" class="button amb-remove-icon">Remove</button>
+                        <button type="button" class="button bmb-remove-icon">Remove</button>
                     </div>
                 `;
                 $button.before(previewHtml);
@@ -112,7 +112,7 @@ jQuery(document).ready(function($) {
             $button.html('<span class="dashicons dashicons-upload"></span> Replace icon');
             
             // Update messenger icon in header
-            const $headerIcon = $item.find('.amb-messenger-icon');
+            const $headerIcon = $item.find('.bmb-messenger-icon');
             $headerIcon.html(`<img src="${attachment.url}" alt="Custom icon">`);
         });
         
@@ -120,21 +120,21 @@ jQuery(document).ready(function($) {
     });
 
     // Remove custom icon
-    $(document).on('click', '.amb-remove-icon', function() {
+    $(document).on('click', '.bmb-remove-icon', function() {
         const $button = $(this);
-        const $preview = $button.closest('.amb-custom-icon-preview');
-        const $item = $button.closest('.amb-messenger-item');
-        const messengerType = $item.find('.amb-upload-icon').data('type');
-        const $input = $item.find('.amb-custom-icon-input');
+        const $preview = $button.closest('.bmb-custom-icon-preview');
+        const $item = $button.closest('.bmb-messenger-item');
+        const messengerType = $item.find('.bmb-upload-icon').data('type');
+        const $input = $item.find('.bmb-custom-icon-input');
         
         $input.val('');
         $preview.remove();
         
-        $item.find('.amb-upload-icon').html('<span class="dashicons dashicons-upload"></span> Upload file');
+        $item.find('.bmb-upload-icon').html('<span class="dashicons dashicons-upload"></span> Upload file');
         
         // Restore default icon
-        const $headerIcon = $item.find('.amb-messenger-icon');
-        $headerIcon.html(`<span class="amb-icon-${messengerType}"></span>`);
+        const $headerIcon = $item.find('.bmb-messenger-icon');
+        $headerIcon.html(`<span class="bmb-icon-${messengerType}"></span>`);
     });
 
     // Preview mode toggle
@@ -147,12 +147,12 @@ jQuery(document).ready(function($) {
         updatePreview();
     });
 
-    $('.amb-messenger-toggle').on('change', function() {
+    $('.bmb-messenger-toggle').on('change', function() {
         updatePreview();
     });
 
     // Save settings
-    $('#amb-save-settings, #amb-save-settings-bottom').on('click', function(e) {
+    $('#bmb-save-settings, #bmb-save-settings-bottom').on('click', function(e) {
         e.preventDefault();
         
         const $button = $(this);
@@ -166,7 +166,7 @@ jQuery(document).ready(function($) {
             url: ambAdmin.ajaxurl,
             type: 'POST',
             data: {
-                action: 'amb_save_settings',
+                action: 'bmb_save_settings',
                 nonce: ambAdmin.nonce,
                 options: options
             },
@@ -208,9 +208,9 @@ jQuery(document).ready(function($) {
         };
         
         // Collect messenger settings
-        $('.amb-messenger-item').each(function() {
+        $('.bmb-messenger-item').each(function() {
             const $item = $(this);
-            const type = $item.find('.amb-upload-icon').data('type');
+            const type = $item.find('.bmb-upload-icon').data('type');
             
             options.messengers[type] = {
                 enabled: $item.find('input[name="messengers[' + type + '][enabled]"]').is(':checked'),
@@ -240,13 +240,13 @@ jQuery(document).ready(function($) {
         const showText = $('input[name="show_text"]').is(':checked');
         
         const enabledMessengers = [];
-        $('.amb-messenger-toggle:checked').each(function() {
-            const $item = $(this).closest('.amb-messenger-item');
-            const $uploadBtn = $item.find('.amb-upload-icon');
+        $('.bmb-messenger-toggle:checked').each(function() {
+            const $item = $(this).closest('.bmb-messenger-item');
+            const $uploadBtn = $item.find('.bmb-upload-icon');
             if ($uploadBtn.length) {
                 const type = $uploadBtn.data('type');
-                const name = $item.find('.amb-messenger-name').text();
-                const customIcon = $item.find('.amb-custom-icon-input').val();
+                const name = $item.find('.bmb-messenger-name').text();
+                const customIcon = $item.find('.bmb-custom-icon-input').val();
                 
                 enabledMessengers.push({
                     type: type,
@@ -283,8 +283,8 @@ jQuery(document).ready(function($) {
             $container.html(html);
             
             // Add click handler to toggle widget
-            $container.find('.amb-preview-toggle').on('click', function() {
-                $(this).closest('.amb-preview-widget').toggleClass('open');
+            $container.find('.bmb-preview-toggle').on('click', function() {
+                $(this).closest('.bmb-preview-widget').toggleClass('open');
             });
         } catch (e) {
             console.error('Preview render error:', e);
@@ -295,27 +295,27 @@ jQuery(document).ready(function($) {
     // Render mobile preview
     function renderMobilePreview(position, offset, primaryColor, hoverColor, iconSize, enableAnimation, showText, messengers) {
         const scaledIconSize = iconSize * 0.7;
-        const positionClass = 'amb-position-' + position;
+        const positionClass = 'bmb-position-' + position;
         
         return `
-            <div class="amb-mobile-mockup">
-                <div class="amb-phone-frame">
-                    <div class="amb-phone-screen">
-                        <div class="amb-status-bar">
+            <div class="bmb-mobile-mockup">
+                <div class="bmb-phone-frame">
+                    <div class="bmb-phone-screen">
+                        <div class="bmb-status-bar">
                             <span>9:41</span>
-                            <div class="amb-status-icons">
-                                <div class="amb-battery"></div>
+                            <div class="bmb-status-icons">
+                                <div class="bmb-battery"></div>
                             </div>
                         </div>
-                        <div class="amb-page-content">
-                            <div class="amb-content-placeholder"></div>
-                            <div class="amb-content-placeholder short"></div>
-                            <div class="amb-content-placeholder"></div>
-                            <div class="amb-content-image"></div>
+                        <div class="bmb-page-content">
+                            <div class="bmb-content-placeholder"></div>
+                            <div class="bmb-content-placeholder short"></div>
+                            <div class="bmb-content-placeholder"></div>
+                            <div class="bmb-content-image"></div>
                             ${renderWidget(positionClass, offset, primaryColor, hoverColor, scaledIconSize, enableAnimation, showText, messengers)}
                         </div>
                     </div>
-                    <div class="amb-home-indicator"></div>
+                    <div class="bmb-home-indicator"></div>
                 </div>
             </div>
         `;
@@ -323,29 +323,29 @@ jQuery(document).ready(function($) {
 
     // Render desktop preview
     function renderDesktopPreview(position, offset, primaryColor, hoverColor, iconSize, enableAnimation, showText, messengers) {
-        const positionClass = 'amb-position-' + position;
+        const positionClass = 'bmb-position-' + position;
         
         return `
-            <div class="amb-desktop-mockup">
-                <div class="amb-browser-window">
-                    <div class="amb-browser-toolbar">
-                        <div class="amb-browser-dots">
-                            <span class="amb-dot red"></span>
-                            <span class="amb-dot yellow"></span>
-                            <span class="amb-dot green"></span>
+            <div class="bmb-desktop-mockup">
+                <div class="bmb-browser-window">
+                    <div class="bmb-browser-toolbar">
+                        <div class="bmb-browser-dots">
+                            <span class="bmb-dot red"></span>
+                            <span class="bmb-dot yellow"></span>
+                            <span class="bmb-dot green"></span>
                         </div>
-                        <div class="amb-address-bar">
+                        <div class="bmb-address-bar">
                             <span>https://your-website.com</span>
                         </div>
                     </div>
-                    <div class="amb-browser-content">
-                        <div class="amb-content-placeholder large"></div>
-                        <div class="amb-content-placeholder"></div>
-                        <div class="amb-content-placeholder short"></div>
-                        <div class="amb-content-grid">
-                            <div class="amb-content-card"></div>
-                            <div class="amb-content-card"></div>
-                            <div class="amb-content-card"></div>
+                    <div class="bmb-browser-content">
+                        <div class="bmb-content-placeholder large"></div>
+                        <div class="bmb-content-placeholder"></div>
+                        <div class="bmb-content-placeholder short"></div>
+                        <div class="bmb-content-grid">
+                            <div class="bmb-content-card"></div>
+                            <div class="bmb-content-card"></div>
+                            <div class="bmb-content-card"></div>
                         </div>
                         ${renderWidget(positionClass, offset, primaryColor, hoverColor, iconSize, enableAnimation, showText, messengers)}
                     </div>
@@ -374,39 +374,39 @@ jQuery(document).ready(function($) {
         
         const messengersHtml = messengers.map((m, index) => {
             return `
-                <a href="#" class="amb-preview-messenger" style="animation-delay: ${index * 0.05}s;">
-                    <div class="amb-preview-icon amb-preview-icon-${m.type}" style="width: ${iconSize}px; height: ${iconSize}px;">
+                <a href="#" class="bmb-preview-messenger" style="animation-delay: ${index * 0.05}s;">
+                    <div class="bmb-preview-icon bmb-preview-icon-${m.type}" style="width: ${iconSize}px; height: ${iconSize}px;">
                         ${m.customIcon ? `<img src="${m.customIcon}" alt="${m.name}">` : getMessengerIcon(m.type)}
                     </div>
-                    ${showText ? `<span class="amb-preview-text">${m.name}</span>` : ''}
+                    ${showText ? `<span class="bmb-preview-text">${m.name}</span>` : ''}
                 </a>
             `;
         }).join('');
         
         return `
-            <div class="amb-preview-widget ${positionClass}" style="--amb-offset: ${offset}px; --amb-icon-size: ${iconSize}px;">
-                <div class="amb-preview-buttons">
+            <div class="bmb-preview-widget ${positionClass}" style="--bmb-offset: ${offset}px; --bmb-icon-size: ${iconSize}px;">
+                <div class="bmb-preview-buttons">
                     ${messengersHtml}
                 </div>
-                <button class="amb-preview-toggle" style="width: ${iconSize}px; height: ${iconSize}px; background: linear-gradient(135deg, ${primaryColor}, ${hoverColor});">
-                    <svg class="amb-icon-open" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <button class="bmb-preview-toggle" style="width: ${iconSize}px; height: ${iconSize}px; background: linear-gradient(135deg, ${primaryColor}, ${hoverColor});">
+                    <svg class="bmb-icon-open" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                     </svg>
-                    <svg class="amb-icon-close" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                    <svg class="bmb-icon-close" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
                         <line x1="6" y1="6" x2="18" y2="18"></line>
                     </svg>
                 </button>
             </div>
             <style>
-                .amb-mobile-mockup {
+                .bmb-mobile-mockup {
                     width: 300px;
                     height: 100%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                 }
-                .amb-phone-frame {
+                .bmb-phone-frame {
                     width: 100%;
                     height: 680px;
                     background: #000;
@@ -416,7 +416,7 @@ jQuery(document).ready(function($) {
                     position: relative;
                     border: 3px solid #000;
                 }
-                .amb-phone-screen {
+                .bmb-phone-screen {
                     width: 100%;
                     height: 100%;
                     background: white;
@@ -424,7 +424,7 @@ jQuery(document).ready(function($) {
                     overflow: hidden;
                     position: relative;
                 }
-                .amb-status-bar {
+                .bmb-status-bar {
                     height: 48px;
                     display: flex;
                     justify-content: space-between;
@@ -433,44 +433,44 @@ jQuery(document).ready(function($) {
                     font-size: 12px;
                     font-weight: 600;
                 }
-                .amb-status-icons {
+                .bmb-status-icons {
                     display: flex;
                     gap: 4px;
                 }
-                .amb-battery {
+                .bmb-battery {
                     width: 16px;
                     height: 12px;
                     border: 1px solid #374151;
                     border-radius: 2px;
                 }
-                .amb-page-content {
+                .bmb-page-content {
                     position: relative;
                     height: calc(100% - 48px);
                     overflow: visible;
                     padding: 20px;
                 }
-                .amb-content-placeholder {
+                .bmb-content-placeholder {
                     height: 16px;
                     background: #e5e7eb;
                     border-radius: 8px;
                     margin-bottom: 12px;
                     pointer-events: none;
                 }
-                .amb-content-placeholder.short {
+                .bmb-content-placeholder.short {
                     width: 70%;
                 }
-                .amb-content-placeholder.large {
+                .bmb-content-placeholder.large {
                     height: 40px;
                     width: 50%;
                 }
-                .amb-content-image {
+                .bmb-content-image {
                     height: 128px;
                     background: linear-gradient(135deg, #dbeafe, #e9d5ff);
                     border-radius: 16px;
                     margin-top: 24px;
                     pointer-events: none;
                 }
-                .amb-home-indicator {
+                .bmb-home-indicator {
                     position: absolute;
                     bottom: 8px;
                     left: 50%;
@@ -480,7 +480,7 @@ jQuery(document).ready(function($) {
                     background: #4b5563;
                     border-radius: 2px;
                 }
-                .amb-desktop-mockup {
+                .bmb-desktop-mockup {
                     width: 100%;
                     height: 100%;
                     display: flex;
@@ -488,7 +488,7 @@ jQuery(document).ready(function($) {
                     justify-content: center;
                     padding: 32px;
                 }
-                .amb-browser-window {
+                .bmb-browser-window {
                     width: 100%;
                     max-width: 1000px;
                     height: 700px;
@@ -498,7 +498,7 @@ jQuery(document).ready(function($) {
                     overflow: hidden;
                     border: 1px solid #e5e7eb;
                 }
-                .amb-browser-toolbar {
+                .bmb-browser-toolbar {
                     height: 40px;
                     background: #f3f4f6;
                     border-bottom: 1px solid #e5e7eb;
@@ -507,19 +507,19 @@ jQuery(document).ready(function($) {
                     padding: 0 16px;
                     gap: 16px;
                 }
-                .amb-browser-dots {
+                .bmb-browser-dots {
                     display: flex;
                     gap: 8px;
                 }
-                .amb-dot {
+                .bmb-dot {
                     width: 12px;
                     height: 12px;
                     border-radius: 50%;
                 }
-                .amb-dot.red { background: #ef4444; }
-                .amb-dot.yellow { background: #f59e0b; }
-                .amb-dot.green { background: #10b981; }
-                .amb-address-bar {
+                .bmb-dot.red { background: #ef4444; }
+                .bmb-dot.yellow { background: #f59e0b; }
+                .bmb-dot.green { background: #10b981; }
+                .bmb-address-bar {
                     flex: 1;
                     height: 24px;
                     background: white;
@@ -531,25 +531,25 @@ jQuery(document).ready(function($) {
                     font-size: 12px;
                     color: #6b7280;
                 }
-                .amb-browser-content {
+                .bmb-browser-content {
                     height: calc(100% - 40px);
                     overflow: visible;
                     position: relative;
                     padding: 48px;
                 }
-                .amb-content-grid {
+                .bmb-content-grid {
                     display: grid;
                     grid-template-columns: repeat(3, 1fr);
                     gap: 24px;
                     margin-top: 32px;
                 }
-                .amb-content-card {
+                .bmb-content-card {
                     height: 192px;
                     background: linear-gradient(135deg, #dbeafe, #e9d5ff);
                     border-radius: 16px;
                     pointer-events: none;
                 }
-                .amb-preview-widget {
+                .bmb-preview-widget {
                     position: absolute;
                     display: flex;
                     flex-direction: column;
@@ -557,30 +557,30 @@ jQuery(document).ready(function($) {
                     gap: 10px;
                     z-index: 50;
                 }
-                .amb-preview-widget.amb-position-right-bottom {
-                    bottom: var(--amb-offset);
-                    right: var(--amb-offset);
+                .bmb-preview-widget.bmb-position-right-bottom {
+                    bottom: var(--bmb-offset);
+                    right: var(--bmb-offset);
                 }
-                .amb-preview-widget.amb-position-left-bottom {
-                    bottom: var(--amb-offset);
-                    left: var(--amb-offset);
+                .bmb-preview-widget.bmb-position-left-bottom {
+                    bottom: var(--bmb-offset);
+                    left: var(--bmb-offset);
                 }
-                .amb-preview-widget.amb-position-right-top {
-                    top: var(--amb-offset);
-                    right: var(--amb-offset);
+                .bmb-preview-widget.bmb-position-right-top {
+                    top: var(--bmb-offset);
+                    right: var(--bmb-offset);
                     flex-direction: column-reverse;
                 }
-                .amb-preview-widget.amb-position-left-top {
-                    top: var(--amb-offset);
-                    left: var(--amb-offset);
+                .bmb-preview-widget.bmb-position-left-top {
+                    top: var(--bmb-offset);
+                    left: var(--bmb-offset);
                     flex-direction: column-reverse;
                 }
-                .amb-preview-widget.amb-position-center-bottom {
-                    bottom: var(--amb-offset);
+                .bmb-preview-widget.bmb-position-center-bottom {
+                    bottom: var(--bmb-offset);
                     left: 50%;
                     transform: translateX(-50%);
                 }
-                .amb-preview-buttons {
+                .bmb-preview-buttons {
                     display: flex;
                     flex-direction: column-reverse;
                     gap: 8px;
@@ -589,16 +589,16 @@ jQuery(document).ready(function($) {
                     transform: scale(0.8);
                     transition: all 0.3s ease;
                 }
-                .amb-preview-widget.amb-position-right-top .amb-preview-buttons,
-                .amb-preview-widget.amb-position-left-top .amb-preview-buttons {
+                .bmb-preview-widget.bmb-position-right-top .bmb-preview-buttons,
+                .bmb-preview-widget.bmb-position-left-top .bmb-preview-buttons {
                     flex-direction: column;
                 }
-                .amb-preview-widget.open .amb-preview-buttons {
+                .bmb-preview-widget.open .bmb-preview-buttons {
                     opacity: 1;
                     visibility: visible;
                     transform: scale(1);
                 }
-                .amb-preview-messenger {
+                .bmb-preview-messenger {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -606,7 +606,7 @@ jQuery(document).ready(function($) {
                     text-decoration: none;
                     animation: slideUp 0.3s ease-out backwards;
                 }
-                .amb-preview-icon {
+                .bmb-preview-icon {
                     border-radius: 0;
                     display: flex;
                     align-items: center;
@@ -614,38 +614,38 @@ jQuery(document).ready(function($) {
                     box-shadow: none;
                     background: transparent;
                 }
-                .amb-preview-icon img {
+                .bmb-preview-icon img {
                     width: 100%;
                     height: 100%;
                     object-fit: contain;
                     border-radius: 0;
                 }
-                .amb-preview-icon svg {
+                .bmb-preview-icon svg {
                     width: 100%;
                     height: 100%;
                     display: block;
                 }
-                .amb-preview-icon svg,
-                .amb-preview-icon svg * {
+                .bmb-preview-icon svg,
+                .bmb-preview-icon svg * {
                     fill: currentColor !important;
                     stroke: currentColor !important;
                 }
-                .amb-preview-icon-whatsapp { color: #25D366; }
-                .amb-preview-icon-telegram { color: #229ED9; }
-                .amb-preview-icon-viber { color: #7360F2; }
-                .amb-preview-icon-messenger { color: #0084FF; }
-                .amb-preview-icon-signal { color: #3A76F0; }
-                .amb-preview-icon-wechat { color: #09B83E; }
-                .amb-preview-icon-line { color: #00B900; }
-                .amb-preview-icon-discord { color: #5865F2; }
-                .amb-preview-icon-vk { color: #0077FF; }
-                .amb-preview-icon-max { color: #6b7280; }
-                .amb-preview-text {
+                .bmb-preview-icon-whatsapp { color: #25D366; }
+                .bmb-preview-icon-telegram { color: #229ED9; }
+                .bmb-preview-icon-viber { color: #7360F2; }
+                .bmb-preview-icon-messenger { color: #0084FF; }
+                .bmb-preview-icon-signal { color: #3A76F0; }
+                .bmb-preview-icon-wechat { color: #09B83E; }
+                .bmb-preview-icon-line { color: #00B900; }
+                .bmb-preview-icon-discord { color: #5865F2; }
+                .bmb-preview-icon-vk { color: #0077FF; }
+                .bmb-preview-icon-max { color: #6b7280; }
+                .bmb-preview-text {
                     font-size: 10px;
                     font-weight: 500;
                     color: #374151;
                 }
-                .amb-preview-toggle {
+                .bmb-preview-toggle {
                     border-radius: 50%;
                     border: none;
                     cursor: pointer;
@@ -656,26 +656,26 @@ jQuery(document).ready(function($) {
                     position: relative;
                     z-index: 60;
                 }
-                .amb-icon-open,
-                .amb-icon-close {
+                .bmb-icon-open,
+                .bmb-icon-close {
                     width: 50%;
                     height: 50%;
                     position: absolute;
                     transition: all 0.3s ease;
                 }
-                .amb-icon-open {
+                .bmb-icon-open {
                     opacity: 1;
                     transform: rotate(0deg) scale(1);
                 }
-                .amb-icon-close {
+                .bmb-icon-close {
                     opacity: 0;
                     transform: rotate(90deg) scale(0);
                 }
-                .amb-preview-widget.open .amb-icon-open {
+                .bmb-preview-widget.open .bmb-icon-open {
                     opacity: 0;
                     transform: rotate(-90deg) scale(0);
                 }
-                .amb-preview-widget.open .amb-icon-close {
+                .bmb-preview-widget.open .bmb-icon-close {
                     opacity: 1;
                     transform: rotate(0deg) scale(1);
                 }

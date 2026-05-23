@@ -2,52 +2,47 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: All Messengers Buttons 1.3.4\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/all-messengers-buttons\n"
+"Project-Id-Version: Badamsoft Messenger Buttons 1.3.4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/badamsoft-messenger-buttons\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: German (Germany) <de@li.org>\n"
-"Language: de_DE\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-22T17:13:02+00:00\n"
+"POT-Creation-Date: 2026-05-23T09:16:31+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
-"X-Domain: all-messengers-buttons\n"
+"X-Domain: badamsoft-messenger-buttons\n"
 
 #. Plugin Name of the plugin
-#: all-messengers-buttons.php
-msgid "All Messengers Buttons"
+#: badamsoft-messenger-buttons.php
+msgid "Badamsoft Messenger Buttons"
 msgstr ""
 
 #. Plugin URI of the plugin
-#: all-messengers-buttons.php
-msgid "https://wordpress.org/plugins/all-messengers-buttons/"
+#: badamsoft-messenger-buttons.php
+msgid "https://wordpress.org/plugins/badamsoft-messenger-buttons/"
 msgstr ""
 
 #. Description of the plugin
-#: all-messengers-buttons.php
+#: badamsoft-messenger-buttons.php
 msgid "Add WhatsApp, Telegram, MAX, Viber, Signal and other messenger buttons in one stylish floating widget."
 msgstr ""
 
 #. Author of the plugin
-#: all-messengers-buttons.php
+#: badamsoft-messenger-buttons.php
 msgid "badamsoft"
 msgstr ""
 
 #. Author URI of the plugin
-#: all-messengers-buttons.php
+#: badamsoft-messenger-buttons.php
 msgid "https://badamsoft.com"
 msgstr ""
 
-#: all-messengers-buttons.php:179
+#: badamsoft-messenger-buttons.php:205
 msgid "Insufficient permissions"
 msgstr ""
 
-#: all-messengers-buttons.php:197
+#: badamsoft-messenger-buttons.php:223
 msgid "Settings saved successfully"
-msgstr ""
-
-#: templates/widget.php:137
-msgid "Open messengers"
 msgstr ""
