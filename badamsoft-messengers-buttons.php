@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Messengers Buttons
+ * Plugin Name: Badamsoft Messengers Buttons
  * Plugin URI: https://wordpress.org/plugins/badamsoft-messengers-buttons/
  * Description: Add WhatsApp, Telegram, MAX, Viber, Signal and other messenger buttons in one stylish floating widget.
  * Version: 1.3.4
