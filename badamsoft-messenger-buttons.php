@@ -32,6 +32,7 @@ class BadamsoftMessengerButtons {
     }
     
     private function __construct() {
+        register_activation_hook(__FILE__, array($this, 'migrate_old_settings'));
         add_action('admin_menu', array($this, 'add_admin_menu'));
         add_action('admin_init', array($this, 'register_settings'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_assets'));
@@ -40,6 +41,13 @@ class BadamsoftMessengerButtons {
         add_action('wp_footer', array($this, 'render_widget'));
         add_shortcode('messengers_buttons', array($this, 'shortcode_handler'));
         add_action('wp_ajax_bmb_save_settings', array($this, 'ajax_save_settings'));
+    }
+
+    public function migrate_old_settings() {
+        $old_options = get_option('amb_options');
+        if ($old_options && !get_option('bmb_options')) {
+            update_option('bmb_options', $old_options);
+        }
     }
 
     
