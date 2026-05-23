@@ -41,6 +41,8 @@ class BadamsoftMessengerButtons {
         add_action('wp_footer', array($this, 'render_widget'));
         add_shortcode('messengers_buttons', array($this, 'shortcode_handler'));
         add_action('wp_ajax_bmb_save_settings', array($this, 'ajax_save_settings'));
+        // Backward compatibility for old admin React bundle
+        add_action('wp_ajax_amb_save_settings', array($this, 'ajax_save_settings'));
     }
 
     public function migrate_old_settings() {
@@ -116,6 +118,8 @@ class BadamsoftMessengerButtons {
             $bmb_inline_js = 'window.wpBmbSettings = ' . wp_json_encode( get_option( 'bmb_options', array() ) ) . ';' . "\n";
             $bmb_inline_js .= 'window.wpBmbAjaxUrl = ' . wp_json_encode( admin_url( 'admin-ajax.php' ) ) . ';' . "\n";
             $bmb_inline_js .= 'window.wpBmbNonce = ' . wp_json_encode( wp_create_nonce( 'bmb_save_settings' ) ) . ';' . "\n";
+            // Backward compatibility for old admin React bundle
+            $bmb_inline_js .= 'window.ambNonce = ' . wp_json_encode( wp_create_nonce( 'amb_save_settings' ) ) . ';' . "\n";
             $bmb_inline_js .= 'window.wpBmbPluginUrl = ' . wp_json_encode( BMB_PLUGIN_URL ) . ';' . "\n";
             $bmb_inline_js .= 'window.wpBmbPluginVersion = ' . wp_json_encode( defined( 'BMB_VERSION' ) ? BMB_VERSION : '' ) . ';';
 
@@ -207,12 +211,19 @@ class BadamsoftMessengerButtons {
     }
     
     public function ajax_save_settings() {
-        check_ajax_referer('bmb_save_settings', 'nonce');
-        
+        // Support both old and new nonce for backward compatibility
+        $nonce_valid = check_ajax_referer('bmb_save_settings', 'nonce', false);
+        if (!$nonce_valid) {
+            $nonce_valid = check_ajax_referer('amb_save_settings', 'nonce', false);
+        }
+        if (!$nonce_valid) {
+            wp_send_json_error(__('Invalid nonce', 'badamsoft-messenger-buttons'));
+        }
+
         if (!current_user_can('manage_options')) {
             wp_send_json_error(__('Insufficient permissions', 'badamsoft-messenger-buttons'));
         }
-        
+
         // Sanitization happens in sanitize_options() called below
         // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
         $options = isset($_POST['options']) ? wp_unslash($_POST['options']) : array();
