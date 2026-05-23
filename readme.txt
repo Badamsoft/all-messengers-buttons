@@ -54,7 +54,7 @@ Messengers Buttons allows you to add a floating widget with messenger buttons to
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/badamsoft-messenger-buttons` directory, or install the plugin through the WordPress plugins screen.
+1. Upload the plugin files to the `/wp-content/plugins/badamsoft-messengers-buttons` directory, or install the plugin through the WordPress plugins screen.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 3. Go to Settings → Messengers Buttons to configure the plugin.
 4. Enable the messengers you want to use and enter your contact details.

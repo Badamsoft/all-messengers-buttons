@@ -1,14 +1,14 @@
 <?php
 /**
  * Plugin Name: Messengers Buttons
- * Plugin URI: https://wordpress.org/plugins/badamsoft-messenger-buttons/
+ * Plugin URI: https://wordpress.org/plugins/badamsoft-messengers-buttons/
  * Description: Add WhatsApp, Telegram, MAX, Viber, Signal and other messenger buttons in one stylish floating widget.
  * Version: 1.3.4
  * Author: badamsoft
  * Author URI: https://badamsoft.com
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: badamsoft-messenger-buttons
+ * Text Domain: badamsoft-messengers-buttons
  * Domain Path: /languages
  */
 
@@ -54,13 +54,15 @@ class BadamsoftMessengerButtons {
 
     
     public function add_admin_menu() {
+        $svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M4 3.75C2.757 3.75 1.75 4.757 1.75 6v6c0 1.243 1.007 2.25 2.25 2.25H5v2.25l2.75-2.25H16c1.243 0 2.25-1.007 2.25-2.25V6c0-1.243-1.007-2.25-2.25-2.25H4Z" fill="none" stroke="black" stroke-width="1.25"/><circle cx="7" cy="9" r="1" fill="black"/><circle cx="10" cy="9" r="1" fill="black"/><circle cx="13" cy="9" r="1" fill="black"/></svg>';
+        $icon = 'data:image/svg+xml;base64,' . base64_encode($svg);
         add_menu_page(
             'Messengers Buttons',
             'Messengers Buttons',
             'manage_options',
-            'badamsoft-messenger-buttons',
+            'badamsoft-messengers-buttons',
             array($this, 'render_admin_page'),
-            BMB_PLUGIN_URL . 'assets/images/admin-menu-icon.svg',
+            $icon,
             30
         );
     }
@@ -101,7 +103,7 @@ class BadamsoftMessengerButtons {
     }
     
     public function enqueue_admin_assets($hook) {
-        if ('toplevel_page_badamsoft-messenger-buttons' !== $hook) {
+        if ('toplevel_page_badamsoft-messengers-buttons' !== $hook) {
             return;
         }
 
@@ -223,11 +225,11 @@ class BadamsoftMessengerButtons {
             $nonce_valid = check_ajax_referer('amb_save_settings', 'nonce', false);
         }
         if (!$nonce_valid) {
-            wp_send_json_error(__('Invalid nonce', 'badamsoft-messenger-buttons'));
+            wp_send_json_error(__('Invalid nonce', 'badamsoft-messengers-buttons'));
         }
 
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(__('Insufficient permissions', 'badamsoft-messenger-buttons'));
+            wp_send_json_error(__('Insufficient permissions', 'badamsoft-messengers-buttons'));
         }
 
         // Sanitization happens in sanitize_options() called below
@@ -245,7 +247,7 @@ class BadamsoftMessengerButtons {
         
         update_option('bmb_options', $options);
         
-        wp_send_json_success(__('Settings saved successfully', 'badamsoft-messenger-buttons'));
+        wp_send_json_success(__('Settings saved successfully', 'badamsoft-messengers-buttons'));
     }
 
     public function sanitize_options($options) {

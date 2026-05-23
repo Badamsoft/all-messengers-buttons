@@ -86,8 +86,8 @@ Insert `[messengers_buttons]` into any post or page to display messenger buttons
 ## Plugin Structure
 
 ```
-badamsoft-messenger-buttons/
-├── badamsoft-messenger-buttons.php   # Main plugin file
+badamsoft-messengers-buttons/
+├── badamsoft-messengers-buttons.php   # Main plugin file
 ├── assets/
 │   ├── css/
 │   │   ├── admin.css            # Admin panel styles
