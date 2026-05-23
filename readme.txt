@@ -1,4 +1,4 @@
-=== Messengers Buttons ===
+=== Badamsoft Messengers Buttons ===
 Contributors: badamsoft
 Tags: messenger, whatsapp, telegram, viber, widget
 Requires at least: 5.0
@@ -8,7 +8,7 @@ Stable tag: 1.3.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Add WhatsApp, Telegram, MAX, Viber, Signal and other messenger buttons in one stylish floating widget. Features a React-powered admin panel, working hours scheduler, and custom icons.
+Add WhatsApp, Telegram, MAX, Viber, Signal and other messenger buttons in one stylish floating widget for your WordPress site.
 
 =-= Description ==
 
