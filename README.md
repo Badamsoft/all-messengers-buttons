@@ -59,7 +59,7 @@ All Messengers Buttons is a modern WordPress plugin that lets you easily add a f
 After activation and configuration the widget appears on every page according to your settings.
 
 ### Shortcode
-Insert `[all_messengers]` into any post or page to display messenger buttons at a specific location.
+Insert `[messengers_buttons]` into any post or page to display messenger buttons at a specific location.
 
 ## Messenger Link Formats
 

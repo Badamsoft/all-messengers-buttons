@@ -38,14 +38,14 @@ class BadamsoftMessengerButtons {
         add_filter('script_loader_tag', array($this, 'add_module_type_to_react_script'), 10, 2);
         add_action('wp_enqueue_scripts', array($this, 'enqueue_frontend_assets'));
         add_action('wp_footer', array($this, 'render_widget'));
-        add_shortcode('all_messengers', array($this, 'shortcode_handler'));
+        add_shortcode('messengers_buttons', array($this, 'shortcode_handler'));
         add_action('wp_ajax_bmb_save_settings', array($this, 'ajax_save_settings'));
     }
 
     
     public function add_admin_menu() {
         add_menu_page(
-            'All Messengers Buttons',
+            'Messengers Buttons',
             'Messengers',
             'manage_options',
             'badamsoft-messenger-buttons',
