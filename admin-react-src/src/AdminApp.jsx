@@ -16,7 +16,7 @@ const messengerIcons = {
   line: `${window.wpBmbPluginUrl}assets/images/line.svg`,
   discord: `${window.wpBmbPluginUrl}assets/images/discord.svg`,
   vk: `${window.wpBmbPluginUrl}assets/images/vk.svg`,
-  max: `${window.wpBmbPluginUrl}assets/images/max.svg`,
+  max: `${window.wpBmbPluginUrl}assets/images/max.png`,
   comera: `${window.wpBmbPluginUrl}assets/images/comera.png`,
   botim: `${window.wpBmbPluginUrl}assets/images/botim.png`,
   imo: `${window.wpBmbPluginUrl}assets/images/imo.svg`,
@@ -103,28 +103,54 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 p-8">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Messengers Buttons</h1>
-            <p className="text-gray-600">Configure your messenger widget</p>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
+      {/* Header */}
+      <div className="bg-white border-b border-gray-200 shadow-sm">
+        <div className="max-w-6xl mx-auto px-8 py-6">
+          <div className="flex items-start justify-between mb-3">
+            <div>
+              <h1 className="text-2xl font-bold mb-1 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Messengers Buttons
+              </h1>
+              <p className="text-gray-600 text-sm">Messenger widget settings</p>
+            </div>
+            <button
+              onClick={saveSettings}
+              disabled={saving}
+              className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-2.5 h-auto rounded-md font-medium shadow-lg shadow-blue-500/30 transition-all disabled:opacity-50"
+            >
+              {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+              Save changes
+            </button>
           </div>
-          <button
-            onClick={saveSettings}
-            disabled={saving}
-            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors disabled:opacity-50"
-          >
-            {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
-            Save Changes
-          </button>
+          <p className="text-gray-600 text-sm max-w-3xl">
+            Add WhatsApp, Telegram, MAX, Viber, Signal and other messengers into one modern floating widget.
+          </p>
         </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-8 py-8">
 
         <Tabs defaultValue="basic" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-8">
-            <TabsTrigger value="basic">Basic Settings</TabsTrigger>
-            <TabsTrigger value="messengers">Messengers</TabsTrigger>
-            <TabsTrigger value="advanced">Advanced</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-3 mb-8 bg-white border border-gray-200 p-1 h-auto shadow-sm rounded-lg">
+            <TabsTrigger
+              value="basic"
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white px-6 py-2.5 rounded-md transition-all"
+            >
+              Basic settings
+            </TabsTrigger>
+            <TabsTrigger
+              value="messengers"
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white px-6 py-2.5 rounded-md transition-all"
+            >
+              Messengers
+            </TabsTrigger>
+            <TabsTrigger
+              value="advanced"
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white px-6 py-2.5 rounded-md transition-all"
+            >
+              Advanced
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="basic" className="space-y-6">
