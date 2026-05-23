@@ -223,7 +223,7 @@ class BadamsoftMessengerButtons {
         wp_send_json_success(__('Settings saved successfully', 'badamsoft-messenger-buttons'));
     }
 
-    private function sanitize_options($options) {
+    public function sanitize_options($options) {
         if (!is_array($options)) {
             return array();
         }
