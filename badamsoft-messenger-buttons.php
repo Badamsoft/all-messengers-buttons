@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Badamsoft Messenger Buttons
+ * Plugin Name: Messengers Buttons
  * Plugin URI: https://wordpress.org/plugins/badamsoft-messenger-buttons/
  * Description: Add WhatsApp, Telegram, MAX, Viber, Signal and other messenger buttons in one stylish floating widget.
  * Version: 1.3.4
@@ -56,11 +56,11 @@ class BadamsoftMessengerButtons {
     public function add_admin_menu() {
         add_menu_page(
             'Messengers Buttons',
-            'Messengers',
+            'Messengers Buttons',
             'manage_options',
             'badamsoft-messenger-buttons',
             array($this, 'render_admin_page'),
-            'dashicons-format-chat',
+            BMB_PLUGIN_URL . 'assets/images/admin-menu-icon.svg',
             30
         );
     }
@@ -115,13 +115,19 @@ class BadamsoftMessengerButtons {
         if (!empty($js_files)) {
             wp_enqueue_script('bmb-react-js', BMB_PLUGIN_URL . 'admin-react/assets/' . basename($js_files[0]), array(), BMB_VERSION, true);
 
-            $bmb_inline_js = 'window.wpBmbSettings = ' . wp_json_encode( get_option( 'bmb_options', array() ) ) . ';' . "\n";
+            $bmb_settings = get_option( 'bmb_options', array() );
+            $bmb_inline_js = 'window.wpBmbSettings = ' . wp_json_encode( $bmb_settings ) . ';' . "\n";
+            $bmb_inline_js .= 'window.wpAmbSettings = ' . wp_json_encode( $bmb_settings ) . ';' . "\n";
             $bmb_inline_js .= 'window.wpBmbAjaxUrl = ' . wp_json_encode( admin_url( 'admin-ajax.php' ) ) . ';' . "\n";
+            $bmb_inline_js .= 'window.wpAmbAjaxUrl = ' . wp_json_encode( admin_url( 'admin-ajax.php' ) ) . ';' . "\n";
             $bmb_inline_js .= 'window.wpBmbNonce = ' . wp_json_encode( wp_create_nonce( 'bmb_save_settings' ) ) . ';' . "\n";
+            $bmb_inline_js .= 'window.wpAmbNonce = ' . wp_json_encode( wp_create_nonce( 'amb_save_settings' ) ) . ';' . "\n";
             // Backward compatibility for old admin React bundle
             $bmb_inline_js .= 'window.ambNonce = ' . wp_json_encode( wp_create_nonce( 'amb_save_settings' ) ) . ';' . "\n";
             $bmb_inline_js .= 'window.wpBmbPluginUrl = ' . wp_json_encode( BMB_PLUGIN_URL ) . ';' . "\n";
-            $bmb_inline_js .= 'window.wpBmbPluginVersion = ' . wp_json_encode( defined( 'BMB_VERSION' ) ? BMB_VERSION : '' ) . ';';
+            $bmb_inline_js .= 'window.wpAmbPluginUrl = ' . wp_json_encode( BMB_PLUGIN_URL ) . ';' . "\n";
+            $bmb_inline_js .= 'window.wpBmbPluginVersion = ' . wp_json_encode( defined( 'BMB_VERSION' ) ? BMB_VERSION : '' ) . ';' . "\n";
+            $bmb_inline_js .= 'window.wpAmbPluginVersion = ' . wp_json_encode( defined( 'BMB_VERSION' ) ? BMB_VERSION : '' ) . ';';
 
             wp_add_inline_script('bmb-react-js', $bmb_inline_js, 'before');
         }

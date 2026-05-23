@@ -2,7 +2,7 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Badamsoft Messenger Buttons 1.3.4\n"
+"Project-Id-Version: Messengers Buttons 1.3.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/badamsoft-messenger-buttons\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: badamsoft-messenger-buttons.php
-msgid "Badamsoft Messenger Buttons"
+msgid "Messengers Buttons"
 msgstr ""
 
 #. Plugin URI of the plugin

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">
+  <defs>
+    <linearGradient id="bmb-admin-icon-gradient" x1="2" y1="2" x2="18" y2="18" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6366F1" />
+      <stop offset="1" stop-color="#8B5CF6" />
+    </linearGradient>
+  </defs>
+  <path d="M4 3.75C2.757 3.75 1.75 4.757 1.75 6v6c0 1.243 1.007 2.25 2.25 2.25H5v2.25l2.75-2.25H16c1.243 0 2.25-1.007 2.25-2.25V6c0-1.243-1.007-2.25-2.25-2.25H4Z" fill="url(#bmb-admin-icon-gradient)"/>
+  <circle cx="7" cy="9" r="1" fill="#FFFFFF"/>
+  <circle cx="10" cy="9" r="1" fill="#FFFFFF"/>
+  <circle cx="13" cy="9" r="1" fill="#FFFFFF"/>
+</svg>

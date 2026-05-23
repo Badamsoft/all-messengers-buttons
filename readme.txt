@@ -1,4 +1,4 @@
-=== Badamsoft Messenger Buttons ===
+=== Messengers Buttons ===
 Contributors: badamsoft
 Tags: messenger, whatsapp, telegram, viber, widget
 Requires at least: 5.0
@@ -10,9 +10,9 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Add WhatsApp, Telegram, MAX, Viber, Signal and other messenger buttons in one stylish floating widget. Features a React-powered admin panel, working hours scheduler, and custom icons.
 
-== Description ==
+=-= Description ==
 
-Badamsoft Messenger Buttons allows you to add a floating widget with messenger buttons to your WordPress site. Your visitors can easily contact you through their preferred messenger.
+Messengers Buttons allows you to add a floating widget with messenger buttons to your WordPress site. Your visitors can easily contact you through their preferred messenger.
 
 **What makes this plugin unique:**
 * Working hours scheduler — widget automatically hides outside business hours
@@ -56,7 +56,7 @@ Badamsoft Messenger Buttons allows you to add a floating widget with messenger b
 
 1. Upload the plugin files to the `/wp-content/plugins/badamsoft-messenger-buttons` directory, or install the plugin through the WordPress plugins screen.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
-3. Go to Settings → Badamsoft Messenger Buttons to configure the plugin.
+3. Go to Settings → Messengers Buttons to configure the plugin.
 4. Enable the messengers you want to use and enter your contact details.
 5. Customize the appearance and position of the widget.
 6. Save your settings and the widget will appear on your site.
@@ -65,7 +65,7 @@ Badamsoft Messenger Buttons allows you to add a floating widget with messenger b
 
 = How do I add a messenger button? =
 
-Go to Settings → Badamsoft Messenger Buttons, navigate to the "Messengers" tab, enable the messenger you want to add, and enter your contact information (phone number, username, or link).
+Go to Settings → Messengers Buttons, navigate to the "Messengers" tab, enable the messenger you want to add, and enter your contact information (phone number, username, or link).
 
 = Can I customize the widget colors? =
 

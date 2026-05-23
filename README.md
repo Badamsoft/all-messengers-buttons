@@ -1,10 +1,10 @@
-# All Messengers Buttons — WordPress Plugin
+# Messengers Buttons — WordPress Plugin
 
 Add WhatsApp, Telegram, MAX, Viber, Signal and other messenger buttons in one stylish floating widget on your WordPress site.
 
 ## Description
 
-All Messengers Buttons is a modern WordPress plugin that lets you easily add a floating widget with popular messenger buttons to your website. The plugin supports 11 messengers and offers extensive customization of the widget's appearance and behavior.
+Messengers Buttons is a modern WordPress plugin that lets you easily add a floating widget with popular messenger buttons to your website. The plugin supports 11 messengers and offers extensive customization of the widget's appearance and behavior.
 
 ## Supported Messengers
 
@@ -43,13 +43,13 @@ All Messengers Buttons is a modern WordPress plugin that lets you easily add a f
 ### Advanced
 - **Analytics**: Google Analytics and Matomo click-tracking integration
 - **Custom CSS**: add your own styles for extra customization
-- **Shortcode**: use `[all_messengers]` to embed the widget anywhere
+- **Shortcode**: use `[messengers_buttons]` to embed the widget anywhere
 
 ## Installation
 
 1. Upload the plugin folder to `/wp-content/plugins/`
 2. Activate the plugin via the **Plugins** menu in WordPress
-3. Navigate to **Messengers** in the admin sidebar
+3. Navigate to **Messengers Buttons** in the admin sidebar
 4. Configure the widget to your liking
 5. Save your settings — the widget will appear automatically
 
@@ -86,8 +86,8 @@ Insert `[messengers_buttons]` into any post or page to display messenger buttons
 ## Plugin Structure
 
 ```
-all-messengers-buttons/
-├── all-messengers-buttons.php   # Main plugin file
+badamsoft-messenger-buttons/
+├── badamsoft-messenger-buttons.php   # Main plugin file
 ├── assets/
 │   ├── css/
 │   │   ├── admin.css            # Admin panel styles
